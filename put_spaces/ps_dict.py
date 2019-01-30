@@ -90,11 +90,9 @@ def put_space_line(dic, line, case_insensitive=False):
 
             if addSpaceAhead or addSpaceBehind:   
                 if case_insensitive:
-                    palavra = palavra[4:].replace("(", "")
-                    palavra = palavra[4:].replace(")", "")
-                else: 
-                    palavra = palavra.replace("(", "")
-                    palavra = palavra.replace(")", "")
+                    palavra = r'(?i)' + re.sub(r'[()]', r'', palavra[4:])
+                else:
+                    palavra = re.sub(r'[()]', r'', palavra)
                 line = line[:pos] + re.sub(r'('+ palavra + r')', subExp, line[pos:pos + len_pal]) + line[pos + len_pal:]
                 
             #Avançamos na linha
