@@ -14,7 +14,8 @@ from argparse import ArgumentParser
 def set_arguments():
     parser = ArgumentParser(description="Add spaces to text with no spaces using NLP algorithms.")
     parser.add_argument("-s", "--source", help="Source file")
-    parser.add_argument("-r", "--remove", help="Remove spaces from source file")
+    parser.add_argument("-r", "--remove", help="Remove wrongly placed spaces from source file")
+    parser.add_argument("-rs", "--remove_space", help="Remove spaces from source file")
     parser.add_argument("-b", "--base", help="Use base solution as algorithm")
     parser.add_argument("-nc", "--ngrams_chars", help="Use ngrams of chars as algorithm. Must specify N first.", nargs='+')
     parser.add_argument("-nw", "--ngrams_words", help="Use ngrams of words as algorithm. Must specify N first.", nargs='+')
@@ -76,6 +77,10 @@ def main():
         if len(args.metrics_remove) == 2:
             evaluate.evalute_and_print(args.metrics_remove[0], args.metrics_remove[1], ps=False)
         else: print_error()
+
+    elif args.remove_space is not None: 
+        loaded_text = clean.clean_text(args.remove_space)
+        print('\n'.join(remove_spaces.remove_spaces(loaded_text)))
 
 main()
 

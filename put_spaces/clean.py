@@ -19,7 +19,7 @@ def clean_text(file):
     sentences = split_sentences(text)
 
     cleaned_sentences = [remove_extra_spaces(line) for line in sentences]
-    print(cleaned_sentences) #TODO : remove
+    #print(cleaned_sentences) #TODO : remove
 
     return cleaned_sentences
 
