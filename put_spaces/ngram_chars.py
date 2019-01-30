@@ -9,7 +9,7 @@ def put_spaces(N, ngram, texto):
     #N-1 últimos caracteres da linha anterior
     lastN = ''
 
-    for line in texto:
+    for line in fileinput.input(texto):
         #Caractere da linha em análise
         i = 0
         #Tamanho da linha
