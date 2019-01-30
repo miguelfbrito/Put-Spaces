@@ -10,7 +10,7 @@ def avaliar_ps(exp, real):
 
     Tpos = Tneg = Fpos = Fneg = 0
 
-    for lineEXP, lineRL in zip(fileinput.input(exp), real):
+    for lineEXP, lineRL in zip(fileinput.input(exp), fileinput.input(real)):
         #Tamanho das linhas
         n_EXP = len(lineEXP)
         n_RL = len(lineRL)

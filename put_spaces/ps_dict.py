@@ -108,14 +108,9 @@ def put_space(dic, texto, case_insensitive=False):
     if case_insensitive:
         dic = dict_to_case_ins(dic)
 
-    #for line in fileinput.input(texto):
-    processed_text = []
-    for line in texto:
+    for line in fileinput.input(texto):
         line = put_space_line(dic, line, case_insensitive)
-        processed_text.append(line)
         print(line, end='') 
-
-    return processed_text
 
 #Recebe um dicionário de palavras e remove espaços erradamente colocados no texto
 def rm_wrong_space(dic, texto, case_insensitive=False):
