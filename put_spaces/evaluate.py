@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import fileinput, sys
+import re
 
 #True Positive = Adicionou o espaço no sitio certo
 #True Negative = Não adicionou espaço onde não era preciso
@@ -11,6 +12,8 @@ def avaliar_ps(exp, real):
     Tpos = Tneg = Fpos = Fneg = 0
 
     for lineEXP, lineRL in zip(fileinput.input(exp), fileinput.input(real)):
+        lineEXP = re.sub(r'\s+', ' ', lineEXP)
+
         #Tamanho das linhas
         n_EXP = len(lineEXP)
         n_RL = len(lineRL)
@@ -51,6 +54,8 @@ def avaliar_rs(exp, real):
     Tpos = Tneg = Fpos = Fneg = 0
 
     for lineEXP, lineRL in zip(fileinput.input(exp), fileinput.input(real)):
+        lineEXP = re.sub(r'\s+', ' ', lineEXP)
+
         #Tamanho das linhas
         n_EXP = len(lineEXP)
         n_RL = len(lineRL)
@@ -90,7 +95,7 @@ def evalute_and_print(before, after, ps=True):
         (Tpos, Tneg, Fpos, Fneg) = avaliar_ps(before, after)
     else:
         (Tpos, Tneg, Fpos, Fneg) = avaliar_rs(before, after)
-    print("\n\nTrue Positive =", Tpos)
+    print("True Positive =", Tpos)
     print("True Negative =", Tneg)
     print("False Positive =", Fpos)
     print("False Negative =", Fneg)

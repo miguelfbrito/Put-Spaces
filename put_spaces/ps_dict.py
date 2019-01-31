@@ -52,7 +52,10 @@ def put_space_line(dic, line, case_insensitive=False):
                 match.append(palavra)
             
         if len(match) > 0:
-            #Escolhemos a palavra com maior número de ocorrências
+            #Escolhemos a palavra de maior comprimento
+            max_len = len(max(match, key = lambda p : len(p)))
+            match = list(filter(lambda p : len(p) == max_len, match))
+            #Desempatamos por número de ocorrências
             palavra = max(match, key = lambda p : dic[p])          
             len_pal = len(palavra)
             
