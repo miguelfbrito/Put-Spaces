@@ -5,8 +5,13 @@ USAGE:
 
 put_spaces -s <source> -r -m
 
-
 """
+'''
+    Universidade do Minho
+    Scripting no Processamento de Linguagem Natural 18/19
+    TP3 - Opção 2: Reintrodução de espaços em textos
+    Grupo 5: PG38418 Luís Dias, PG38419 Miguel Brito, A78434 Pedro Silva 
+'''
 import re, sys, getopt, pickle
 import remove_spaces, evaluate, clean, ps_dict, ngram_chars, ngram_words
 from argparse import ArgumentParser

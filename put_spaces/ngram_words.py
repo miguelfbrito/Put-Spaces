@@ -4,6 +4,13 @@ import regex as re
 from collections import Counter
 from ps_dict import put_space_line
 
+'''
+    Universidade do Minho
+    Scripting no Processamento de Linguagem Natural 18/19
+    TP3 - Opção 2: Reintrodução de espaços em textos
+    Grupo 5: PG38418 Luís Dias, PG38419 Miguel Brito, A78434 Pedro Silva 
+'''
+
 # Constrói um dicionário de palavras a partir de um N-grama
 def ngram_to_dic(ngram):
     dic = Counter()

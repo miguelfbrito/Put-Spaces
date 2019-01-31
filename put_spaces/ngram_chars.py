@@ -4,6 +4,12 @@ import sys, os, fileinput, getopt
 import regex as re
 import pickle
 
+'''
+    Universidade do Minho
+    Scripting no Processamento de Linguagem Natural 18/19
+    TP3 - Opção 2: Reintrodução de espaços em textos
+    Grupo 5: PG38418 Luís Dias, PG38419 Miguel Brito, A78434 Pedro Silva 
+'''
 
 def put_spaces(N, ngram, texto):
     #N-1 últimos caracteres da linha anterior

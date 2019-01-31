@@ -2,6 +2,13 @@
 import fileinput, sys
 import re
 
+'''
+    Universidade do Minho
+    Scripting no Processamento de Linguagem Natural 18/19
+    TP3 - Opção 2: Reintrodução de espaços em textos
+    Grupo 5: PG38418 Luís Dias, PG38419 Miguel Brito, A78434 Pedro Silva 
+'''
+
 #True Positive = Adicionou o espaço no sitio certo
 #True Negative = Não adicionou espaço onde não era preciso
 #False Positive = Adicionou um espaço onde não era para adicionar
