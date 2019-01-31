@@ -64,6 +64,14 @@
 
 	Funções auxiliares à limpeza de textos.
 
+## extract_ngrams_chars_cetempublico.py
+
+	Extração de ngrams de chars do repositório CETEMPúblico para um dict("chars" : #ocorrencias). Terminada a extração é realizado um dump pickle da estrutura de dados.
+
+## extract_ngrams_words_cetempublico.py
+
+	Extração de ngrams de words do repositório CETEMPúblico para um dict("chars" : #ocorrencias). Terminada a extração é realizado um dump pickle da estrutura de dados. O dicionário de palavras é gerado recorrendo a esta função para N=1.
+	
 # AUTHORS
 
 	PG38418 - Luís Dias
