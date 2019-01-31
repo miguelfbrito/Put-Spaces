@@ -1,4 +1,4 @@
-# USAGE EXEMPLES
+# USAGE EXAMPLES
 
 #### Remoção de espaços de um ficheiro:
     
