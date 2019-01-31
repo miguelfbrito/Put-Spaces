@@ -132,7 +132,9 @@ def rm_wrong_space(dic, texto, case_insensitive=False):
             palavras = list(map(lambda pal: r'(?i)' + pal.lower(), palavras))
 
         #Analisamos as palavras par a par
-        for i in range(1, len(palavras)):
+        i = 1
+        N = len(palavras)
+        while i < N:
             pal1 = palavras[i-1]
             pal2 = palavras[i]
            
@@ -154,6 +156,15 @@ def rm_wrong_space(dic, texto, case_insensitive=False):
 
                 #removemos o espaço sse o seu número de ocorrências for superior
                 if dic[cat_pal] > sum_oco:
-                    line = re.sub(r'(' + pal1 + r') (' + pal2 + r')', r'\1\2', line)
+                    line = re.sub(r'(' + pal1 + r') (' + pal2 + r')', r'\1\2', line, count=1)
+                    #Adaptar lista de palavras
+                    palavras[i-1] = cat_pal
+                    palavras.remove(palavras[i])
+                    #Adaptar tamanho
+                    N -= 1
+                else:
+                    i += 1
+            else:
+                i += 1
 
         print(line)
