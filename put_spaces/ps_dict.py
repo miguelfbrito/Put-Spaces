@@ -103,6 +103,11 @@ def put_space_line(dic, line, case_insensitive=False):
 
         else: pos += 1
 
+    #Adicionar espaço à frente da pontuação, se for o caso
+    line = re.sub(r'(\p{punct})(?=\p{L})', r'\1 ', line)
+    #Tratar de palavras com hífen
+    line = re.sub(r'(?<=\p{L})(\-)( )', r'\1', line)
+
     return line
 
 #Recebe um dicionário de palavras e adiciona espaços ao texto
