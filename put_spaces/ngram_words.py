@@ -23,10 +23,10 @@ def ngram_to_dic(ngram):
 #se não for especificado, será construido a partir do N-grama
 def put_spaces(ngram, N, texto, dic={}):
 
-    #N-1 últimas palavras da linha anterior
+    #N-1 palavras anteriores
     lastN = []
 
-    for line in texto:
+    for line in fileinput.input(texto):
         #Caractere da string que representa o primeiro caracter da palavra
         pos = 0         
         #Tamanho da linha
@@ -81,13 +81,17 @@ def put_spaces(ngram, N, texto, dic={}):
                 #Lista de palavras possíveis a serem formadas a partir de pos           
                 match = []  
                 #N-1 últimas palavras
-                antN = ' '.join(lastN) + ' '
+                if N != 1 :
+                    antN = ' '.join(lastN) + ' '
+                else: #Se N=1 não existem palavras anteriores
+                    antN = ''
                 #Avanço de pos
                 step = 1
 
                 #offset = Número de caracters da palavra
                 for offset in range(0, N - pos):
                     palavra = line[pos:pos + offset]
+
 
                     if  antN + palavra in ngram:
                         match.append(palavra)
@@ -99,10 +103,37 @@ def put_spaces(ngram, N, texto, dic={}):
                     len_pal = len(palavra)
 
                     #Adicionamos o espaço a seguir sse à frente estiver uma letra 
-                    if re.match(r'\p{L}', line[pos + len_pal]) != None:
+                    '''if re.match(r'\p{L}', line[pos + len_pal]) != None:
                         line = line[:pos] + re.sub(r'('+ palavra + r')', subExp, line[pos:pos + len_pal]) + line[pos + len_pal:]
                         line_len += 1
+                        step += 1'''
+
+                    #Adicionamos espaço à frente, sse à frente estiver uma letra  
+                    addSpaceAhead = re.match(r'\p{L}', line[pos + len_pal]) != None 
+                    #Isolamos a palavra, i.e., se atrás estiver uma letra  
+                    addSpaceBehind = pos > 0 and re.match(r'\p{L}', line[pos-1]) != None
+
+                    #Expressão para adição de espaços
+                    subExp = r'\1'
+
+                    if addSpaceAhead:
+                        subExp = subExp + r' '
+
+                        #Adaptamos o tamanho da linha
+                        line_len += 1
+                        #Adaptar passo
                         step += 1
+
+                    if addSpaceBehind:
+                        subExp = r' ' + subExp
+                        #Adaptamos o tamanho da linha
+                        line_len += 1
+                        #Incrementamos o passo de forma a posicionar corretamente
+                        #'pos' na iteração seguinte
+                        step += 1
+
+                    if addSpaceAhead or addSpaceBehind:   
+                        line = line[:pos] + re.sub(r'('+ palavra + r')', subExp, line[pos:pos + len_pal]) + line[pos + len_pal:]
 
                     #Atualizamos as N-1 palavras
                     lastN.pop(0)
@@ -118,6 +149,8 @@ def put_spaces(ngram, N, texto, dic={}):
 
         #Adicionar espaço à frente da pontuação, se for o caso
         line = re.sub(r'(\p{punct})(?=\p{L})', r'\1 ', line)
+        #Tratar de palavras com hífen
+        line = re.sub(r'(?<=\p{L})(\-)( )', r'\1', line)
 
         if line[-1] == '\n': line = line[:-1]
         print(line)

@@ -62,7 +62,7 @@ def put_space_line(dic, line, case_insensitive=False):
 
             #Adicionamos espaço à frente, sse à frente estiver uma letra  
             addSpaceAhead = re.match(r'\p{L}', line[pos + len_pal]) != None 
-            #Isolamos a palavra, i.e., se à atras estiver uma letra  
+            #Isolamos a palavra, i.e., se atrás estiver uma letra  
             addSpaceBehind = pos > 0 and re.match(r'\p{L}', line[pos-1]) != None
 
             #Indica quantas posições na string vamos avançar
