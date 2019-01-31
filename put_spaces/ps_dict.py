@@ -128,7 +128,8 @@ def rm_wrong_space(dic, texto, case_insensitive=False):
         
         #Se estamos a tratar de forma case insensitive
         #adaptamos a lista de palavras à syntax do dicionário
-        palavras = list(map(lambda pal: r'(?i)' + pal.lower(), palavras))
+        if case_insensitive:
+            palavras = list(map(lambda pal: r'(?i)' + pal.lower(), palavras))
 
         #Analisamos as palavras par a par
         for i in range(1, len(palavras)):

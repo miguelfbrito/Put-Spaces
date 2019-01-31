@@ -49,7 +49,7 @@ def put_spaces(ngram, N, texto, dic={}):
                     words = words[:n_needed]
 
                     #Encontramos a posição da ultima palavra
-                    last_w_line = pos #Na linha
+                    last_w_line = pos     #Na linha
                     last_w_line_space = 0 #Na linha resultante da solução de base
                     for word in words:
                         last_w_line  = last_w_line + line[last_w_line:].find(word) + len(word)
@@ -101,12 +101,6 @@ def put_spaces(ngram, N, texto, dic={}):
                     #Escolhemos a palavra que resulta no maior número de ocorrências
                     palavra = max(match, key = lambda p : ngram[antN + p])
                     len_pal = len(palavra)
-
-                    #Adicionamos o espaço a seguir sse à frente estiver uma letra 
-                    '''if re.match(r'\p{L}', line[pos + len_pal]) != None:
-                        line = line[:pos] + re.sub(r'('+ palavra + r')', subExp, line[pos:pos + len_pal]) + line[pos + len_pal:]
-                        line_len += 1
-                        step += 1'''
 
                     #Adicionamos espaço à frente, sse à frente estiver uma letra  
                     addSpaceAhead = re.match(r'\p{L}', line[pos + len_pal]) != None 
